@@ -432,441 +432,366 @@
     }
 
     /* Navbar Overlay Styles */
+    @font-face {
+      font-family: "Pprightgrotesk";
+      src: url("https://cdn.prod.website-files.com/66f423487a2a26cb480df5f6/66f423487a2a26cb480df619_PPRightGrotesk-TallBlack.woff2") format("woff2"),
+        url("https://cdn.prod.website-files.com/66f423487a2a26cb480df5f6/66f423487a2a26cb480df618_PPRightGrotesk-TallBlack.woff") format("woff"),
+        url("https://cdn.prod.website-files.com/66f423487a2a26cb480df5f6/66f423487a2a26cb480df61b_PPRightGrotesk-TallBlack.ttf") format("truetype");
+      font-weight: 900;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: "Ppradiogrotesk";
+      src: url("https://cdn.prod.website-files.com/66f423487a2a26cb480df5f6/66f423487a2a26cb480df621_PPRadioGrotesk-Regular.woff2") format("woff2"),
+        url("https://cdn.prod.website-files.com/66f423487a2a26cb480df5f6/66f423487a2a26cb480df625_PPRadioGrotesk-Regular.woff") format("woff"),
+        url("https://cdn.prod.website-files.com/66f423487a2a26cb480df5f6/66f423487a2a26cb480df626_PPRadioGrotesk-Regular.ttf") format("truetype");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: "Ppformula";
+      src: url("https://cdn.prod.website-files.com/66f423487a2a26cb480df5f6/66f423487a2a26cb480df622_PPFormula-CondensedBlack.woff2") format("woff2"),
+        url("https://cdn.prod.website-files.com/66f423487a2a26cb480df5f6/66f423487a2a26cb480df623_PPFormula-CondensedBlack.woff") format("woff"),
+        url("https://cdn.prod.website-files.com/66f423487a2a26cb480df5f6/66f423487a2a26cb480df61c_PPFormula-CondensedBlack.ttf") format("truetype");
+      font-weight: 900;
+      font-style: normal;
+      font-display: swap;
+    }
+
     :root {
-      --_nav-f-family: "Jura", sans-serif;
-      --_nav-btn-transition-duration: 150ms;
-      --_nav-btn-clr: light-dark(#222, white);
-      --_nav-btn-clr-hover: rgb(254, 154, 0);
-      --_nav-btn-clr-expanded: light-dark(var(--txt-light), var(--txt-dark));
-      --_nav-bg-open: rgb(137, 75, 0);
-      --_nav-bg-open_half: rgb(254, 154, 0);
-      --_nav-panel-border-radius: 30px;
-      --_nav-panel-transition-duration: 1000ms;
-      --_nav-panel-transition-timing-function: cubic-bezier(0.86, 0, 0.672, 1.003);
-      --_nav-link-clr: light-dark(var(--txt-light), var(--txt-dark));
-      --_nav-link-clr-hover: rgb(254, 154, 0);
-      --_nav-link-bg-clr-hover: rgb(137, 75, 0);
-      --bg-dark: rgb(16, 24, 40);
-      --bg-light: rgb(255, 237, 212);
-      --txt-light: rgb(10, 10, 10);
-      --txt-dark: rgb(245, 245, 245);
+      --swatch--brand: #006fe6;
+      --swatch--light: white;
+      --swatch--transparent: rgba(255, 255, 255, 0);
+      --swatch--dark: #19191b;
+      --font--primary-family: "Ppradiogrotesk", sans-serif;
+      --font--secondary-family: "Ppformula", sans-serif;
+      --font--tertiary-family: "Pprightgrotesk", sans-serif;
+      --font--secondary-black: 900;
+      --font--tertiary-black: 900;
+      --size--0-75rem: 0.75rem;
+      --size--1-25rem: 1.25rem;
+      --size--1-5rem: 1.5rem;
+      --size--3rem: 3rem;
+      --size--6rem: 6rem;
+      --size--8-5rem: 8.5rem;
+      --space--medium: var(--size--3rem);
+      --line-height--1em: 1em;
+      --letter-spacing--0em: 0em;
+      --h2--font-family: var(--font--tertiary-family);
+      --h2--font-size: var(--size--8-5rem);
+      --h2--line-height: var(--line-height--1em);
+      --h2--letter-spacing: var(--letter-spacing--0em);
+      --h2--font-weight: var(--font--tertiary-black);
+      --h2--text-transform: uppercase;
+      --display--font-family: var(--font--secondary-family);
+      --display--line-height: var(--line-height--1em);
+      --display--letter-spacing: var(--letter-spacing--0em);
+      --display--font-weight: var(--font--secondary-black);
+      --display--text-transform: uppercase;
+      --radius--small: 1.5rem;
     }
 
-    nav {
-      position: fixed;
-      top: 0;
-      right: 0;
-      padding: 1rem;
-      z-index: 9999;
-      container: nav inline-size;
+    .page_wrap {
+      overflow: clip;
     }
 
-    nav>button {
-      margin-top: 2rem;
-    }
-
-    nav::before,
-    nav::after {
-      content: "";
-      position: fixed;
-      top: 0;
-      right: 0;
-      transition: width 600ms cubic-bezier(0.86, 0, 0.672, 1.003);
-      border-radius: 30px 0 0 30px;
-      height: 100vh;
-      z-index: -1;
-    }
-
-    nav::before {
-      width: var(--_nav-bg-w, 0);
-      background-color: rgb(137, 75, 0);
-    }
-
-    nav::after {
-      width: var(--_nav-bg-w_after, 0);
-      background-color: rgb(254, 154, 0);
-    }
-
-    nav:has([aria-expanded="true"]) {
-      --_nav-bg-w: calc(100vw + 30px);
-      --_nav-bg-w_after: calc(33vw + 30px);
-    }
-
-    nav>button {
-      appearance: none;
-      border: none;
-      display: flex;
-      align-items: center;
-      gap: 0.25rem;
-      background-color: transparent;
-      border-radius: 3px;
-      color: var(--_nav-btn-clr);
-      transition: color var(--_nav-btn-transition-duration) ease-in-out;
-      position: relative;
-      z-index: 2;
-      cursor: pointer;
-    }
-
-    nav>button>svg path {
-      transition-property: color, scale, rotate;
-      transition-duration: var(--_nav-btn-transition-duration);
-      transition-timing-function: ease-in-out;
-      transition-delay: 0ms;
-      transform-origin: center center;
-    }
-
-    nav>button:focus-visible {
-      outline: 1px dashed steelblue;
-    }
-
-    nav>button:is(:hover, :focus-visible) {
-      color: var(--_nav-btn-clr-hover);
-    }
-
-    nav>button::before {
-      content: "Menu";
-      transition: color var(--_nav-btn-transition-duration) ease-in-out;
-    }
-
-    nav>button[aria-expanded="true"] {
-      color: var(--_nav-btn-clr-expanded);
-    }
-
-    nav>button[aria-expanded="true"]::before {
-      content: "Close";
-    }
-
-    nav>button[aria-expanded="true"]>svg path:is(:nth-of-type(1), :nth-of-type(4)) {
-      scale: 0 1;
-    }
-
-    nav>button[aria-expanded="true"]>svg path:nth-of-type(2) {
-      rotate: -45deg;
-    }
-
-    nav>button[aria-expanded="true"]>svg path:nth-of-type(3) {
-      rotate: 45deg;
-    }
-
-    /* Navbar menu panel */
-    nav>ul {
-      position: fixed;
-      background-color: light-dark(var(--bg-light), var(--bg-dark));
-      border-radius: 30px 0 0 30px;
-      overflow: hidden;
-      top: 0;
-      right: 0;
-      margin: 0;
-      padding: 0;
-      width: fit-content;
-      height: 100vh;
-      list-style: none;
-      transform: translateX(var(--_nav-panel-translate-x, 100%));
-      transition: transform 1000ms cubic-bezier(0.86, 0, 0.672, 1.003);
+    .u-vflex-stretch-center {
       display: flex;
       flex-direction: column;
-      justify-content: space-evenly;
-      align-items: flex-start;
-      padding: 10vh 0;
+      justify-content: center;
+      align-items: stretch;
     }
 
-    nav>ul[aria-hidden="false"] {
-      --_nav-panel-translate-x: 0;
-      --_nav-link-txt-rotate: 0deg;
-      --_nav-link-txt-translate: 0;
-    }
-
-    nav>ul>li {
-      --_nav-link-transition-duration: 350ms;
-      --_nav-link-transition-timing-function: ease-in-out;
-      padding: 0;
-      margin: 0;
-      overflow-y: clip;
-    }
-
-    nav>ul>li:nth-child(1) {
-      --i: 1;
-      margin-block-start: 60px;
-    }
-
-    nav>ul>li>a {
-      --_nav-txt-intro-duration: 300ms;
-      --_nav-txt-intro-delay: calc(var(--i) * 50ms + var(--_nav-panel-transition-duration) * 1);
-      --_nav-txt-intro-timing-function: ease-in-out;
-      font-family: var(--_nav-f-family);
-      letter-spacing: 0.05rem;
-      position: relative;
+    .u-vflex-center-center {
       display: flex;
-      font-size: clamp(2rem, 2.5vw + 0.5rem, 5rem);
-      font-weight: 700;
-      text-transform: uppercase;
-      line-height: 1;
-      padding: 0.5rem 6rem 0.5rem 2rem;
-      text-decoration: none;
-      color: var(--_nav-link-clr);
-      isolation: isolate;
-      transform-origin: left;
-      transform: translateY(var(--_nav-link-txt-translate, 100%));
-      transition-property: transform;
-      transition-duration: var(--_nav-txt-intro-duration);
-      transition-delay: var(--_nav-txt-intro-delay, 0ms);
-      transition-timing-function: var(--_nav-txt-intro-timing-function);
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
 
-    nav>ul>li>a>span {
+    .u-hflex-center-center {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .u-text-menu-link {
+      font-family: var(--h2--font-family);
+      font-size: var(--size--6rem);
+      line-height: var(--h2--line-height);
+      letter-spacing: var(--h2--letter-spacing);
+      text-transform: var(--h2--text-transform);
+      font-weight: var(--h2--font-weight);
       display: block;
-      transition: transform var(--_nav-link-transition-duration) var(--_nav-link-transition-timing-function),
-        translate 0ms calc(var(--_nav-link-transition-duration) / 2),
-        color 0ms calc(var(--_nav-link-transition-duration) / 2);
     }
 
-    nav>ul>li>a::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-color: var(--_nav-link-bg-clr-hover);
-      translate: 0 2lh;
-      z-index: -1;
-      transition: all calc(var(--_nav-link-transition-duration) * 1) ease-in-out;
+    .menu_wrap {
+      z-index: 2000;
+      height: 90svh;
+      position: fixed;
+      inset: 1% 1% auto;
+      transition: transform 0.45s ease;
     }
 
-    nav>ul>li>a:is(:hover, :focus-visible) {
-      color: var(--_nav-link-clr-hover);
+    .menu_wrap.u-vflex-stretch-center {
+      transform: translateY(-101.5%);
     }
 
-    nav>ul>li>a:is(:hover, :focus-visible)>span {
-      transform: translateY(-2lh);
-      translate: 0 2lh;
-      color: var(--_nav-link-clr-hover);
+    .menu_wrap.is-open.u-vflex-stretch-center {
+      transform: translateY(0);
     }
 
-    /* Accordion Styles */
-    .accordion-item {
+    .menu_layout {
       position: relative;
-    }
-
-    .accordion-trigger {
-      --_nav-txt-intro-duration: 300ms;
-      --_nav-txt-intro-delay: calc(var(--i) * 50ms + 1000ms * 1);
-      --_nav-txt-intro-timing-function: ease-in-out;
-      font-family: var(--_nav-f-family);
-      letter-spacing: 0.05rem;
-      position: relative;
-      display: flex;
-      font-size: clamp(2rem, 2.5vw + 0.5rem, 5rem);
-      font-weight: 700;
-      text-transform: uppercase;
-      line-height: 1;
-      padding: 0.5rem 6rem 0.5rem 2rem;
-      text-decoration: none;
-      color: var(--_nav-link-clr);
-      isolation: isolate;
-      transform-origin: left;
-      transform: translateY(var(--_nav-link-txt-translate, 100%));
-      transition-property: transform;
-      transition-duration: var(--_nav-txt-intro-duration);
-      transition-delay: var(--_nav-txt-intro-delay, 0ms);
-      transition-timing-function: var(--_nav-txt-intro-timing-function);
-      cursor: pointer;
-      background: none;
-      border: none;
       width: 100%;
-      text-align: left;
+      height: 100%;
+      border-radius: var(--radius--small);
+      background-color: var(--swatch--brand);
+      overflow: hidden;
     }
 
-    .accordion-trigger::before {
-      content: "";
+    .menu_link {
+      position: relative;
+      height: 6rem;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: var(--swatch--light);
+    }
+
+    .menu_rdm_top,
+    .menu_rdm_bottom {
+      width: 100%;
       position: absolute;
-      inset: 0;
-      background-color: var(--_nav-link-bg-clr-hover);
-      translate: 0 2lh;
-      z-index: -1;
-      transition: all calc(var(--_nav-link-transition-duration) * 1) ease-in-out;
       pointer-events: none;
     }
 
-    .accordion-trigger::after {
-      content: "+";
-      position: absolute;
-      right: 2rem;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 2rem;
-      font-weight: 300;
-      transition: transform 300ms ease-in-out;
-      color: var(--_nav-link-clr);
+    .menu_rdm_top {
+      inset: -6vw 0% auto;
     }
 
-    .accordion-item.active .accordion-trigger::after {
-      transform: translateY(-50%) rotate(45deg);
+    .menu_rdm_bottom {
+      inset: auto 0% -10vw;
     }
 
-    .accordion-trigger:is(:hover, :focus-visible) {
-      color: var(--_nav-link-clr-hover);
+    .menu_rdm_text {
+      opacity: 0.2;
+      font-family: var(--display--font-family);
+      font-size: 23vw;
+      line-height: var(--display--line-height);
+      letter-spacing: var(--display--letter-spacing);
+      font-weight: var(--display--font-weight);
+      text-transform: var(--display--text-transform);
+      color: var(--swatch--transparent);
+      -webkit-text-stroke-width: 1px;
+      -webkit-text-stroke-color: var(--swatch--light);
     }
 
-    .accordion-trigger:is(:hover, :focus-visible)::before {
-      translate: 0 0;
-    }
-
-    .accordion-trigger:is(:hover, :focus-visible)>span {
-      transform: translateY(-2lh);
-      translate: 0 2lh;
-      color: var(--_nav-link-clr-hover);
-    }
-
-    /* Reset hover effects when accordion is active */
-    .accordion-item.active .accordion-trigger {
-      color: var(--_nav-link-clr);
-    }
-
-    .accordion-item.active .accordion-trigger::before {
-      translate: 0 2lh;
-      opacity: 0;
-    }
-
-    .accordion-item.active .accordion-trigger>span {
-      transform: translateY(0);
-      translate: 0 0;
-      color: var(--_nav-link-clr);
-    }
-
-    .accordion-content {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 300ms ease-in-out;
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .accordion-item.active .accordion-content {
-      max-height: 300px;
-    }
-
-    .accordion-content li {
-      --i: 2.1;
-    }
-
-    .accordion-content li a {
-      --_nav-txt-intro-duration: 300ms;
-      --_nav-txt-intro-delay: calc(var(--i) * 50ms + 1000ms * 1);
-      --_nav-txt-intro-timing-function: ease-in-out;
-      font-family: var(--_nav-f-family);
-      letter-spacing: 0.05rem;
-      position: relative;
+    .menu_button {
+      position: fixed;
+      inset: 1% auto auto 50%;
+      transform: translateX(-50%);
+      margin: 0 auto;
       display: flex;
-      font-size: clamp(1.2rem, 1.5vw + 0.3rem, 2.5rem);
-      font-weight: 500;
-      text-transform: uppercase;
-      line-height: 1;
-      padding: 0.3rem 4rem 0.3rem 3rem;
-      text-decoration: none;
-      color: var(--_nav-link-clr);
-      isolation: isolate;
-      transform-origin: left;
-      transform: translateY(var(--_nav-link-txt-translate, 100%));
-      transition-property: transform;
-      transition-duration: var(--_nav-txt-intro-duration);
-      transition-delay: var(--_nav-txt-intro-delay, 0ms);
-      transition-timing-function: var(--_nav-txt-intro-timing-function);
+      justify-content: center;
+      align-items: center;
+      width: 12rem;
+      min-height: 2.75rem;
+      border-radius: var(--radius--small) var(--radius--small) 0 0;
+      background-color: var(--swatch--brand);
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      z-index: 2001;
     }
 
-    .accordion-content li a::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-color: var(--_nav-link-bg-clr-hover);
-      translate: 0 2lh;
-      z-index: -1;
-      transition: all calc(var(--_nav-link-transition-duration) * 1) ease-in-out;
-      opacity: 0;
+    .menu_button_wrap.u-vflex-center-center {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      row-gap: 6px;
     }
 
-    .accordion-content li a::after {
-      content: "";
-      position: absolute;
-      bottom: 0.2rem;
-      left: 3rem;
-      right: 4rem;
+    .menu_button_line {
+      width: 32px;
       height: 2px;
-      background-color: var(--_nav-link-clr-hover);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 300ms ease-in-out;
+      background-color: var(--swatch--light);
     }
 
-    .accordion-content li a:is(:hover, :focus-visible)::after {
-      transform: scaleX(1);
+    .menu_button_cross {
+      display: none;
+      font-size: 3rem;
+      line-height: 1;
+      color: var(--swatch--light);
     }
 
-    nav>ul>li>a:is(:hover, :focus-visible)::before {
-      translate: 0 0;
-      transition-duration: calc(var(--_nav-link-transition-duration) * 0.75);
+    .menu_wrap.is-open .menu_button_wrap {
+      display: none;
     }
 
-
-
-    /* Ensure navbar is above all other content */
-    body:has(nav > ul[aria-hidden="false"])>*:not(nav),
-    body:has(nav > ul[aria-hidden="false"])::after {
-      filter: blur(2px) grayscale(1) opacity(0.5);
-      z-index: -1;
+    .menu_wrap.is-open .menu_button_cross {
+      display: block;
     }
+
+    .menu_button_corner-left,
+    .menu_button_corner-right {
+      width: 14px;
+      color: var(--swatch--brand);
+      position: absolute;
+    }
+
+    .menu_button_corner-left {
+      inset: 0% auto auto -14px;
+      transform: none;
+    }
+
+    .menu_button_corner-right {
+      inset: 0% -14px auto auto;
+      transform: none;
+    }
+
+    .menu_link .u-text-menu-link + .u-text-menu-link {
+      display: none;
+      transform: none;
+      transition: none;
+    }
+
+    .menu_link:hover .u-text-menu-link {
+      transform: none;
+    }
+
+    .menu_link:hover .u-text-menu-link + .u-text-menu-link {
+      display: none;
+      transform: none;
+    }
+
+    .menu_link::before,
+    .menu_link::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 0.75rem;
+      transform: translateX(-50%);
+      pointer-events: none;
+    }
+
+    .menu_link::before {
+      width: 80%;
+      height: 1px;
+      background-color: rgba(255, 255, 255, 0.25);
+      opacity: 1;
+    }
+
+    .menu_link::after {
+      width: 0;
+      height: 2px;
+      background-color: var(--swatch--light);
+      transition: width 0.25s ease;
+    }
+
+    .menu_link:hover::after {
+      width: 80%;
+    }
+
+    .no-scroll {
+      overflow: hidden;
+    }
+
+    @media screen and (max-width: 767px) {
+      .u-text-menu-link {
+        font-size: var(--size--6rem);
+      }
+
+      .menu_link {
+        height: 3.6rem;
+      }
+
+      .menu_wrap.u-vflex-stretch-center {
+        top: auto;
+        bottom: 1%;
+        transform: translateY(101.5%);
+      }
+
+      .menu_wrap.is-open.u-vflex-stretch-center {
+      transform: translateY(0);
+      }
+
+      .menu_button {
+        inset: 1% auto auto 50%;
+        transform: translateX(-50%);
+        border-radius: var(--radius--small) var(--radius--small) 0 0;
+      }
+
+      .menu_button_corner-left {
+        inset: auto auto 0% -14px;
+        transform: none;
+      }
+
+      .menu_button_corner-right {
+        inset: auto -14px 0% auto;
+        transform: none;
+      }
+
+      .menu_link::before,
+      .menu_link::after {
+        bottom: 0.5rem;
+      }
+    }
+
   </style>
 </head>
 
 <body>
   <!-- Navbar Overlay -->
-  <nav>
-    <button type="button" id="btn-nav-toggle" aria-expanded="false" aria-controls="nav-menu"
-      aria-label="Toggle navigation menu">
-      <!--Menu-->
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-        <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M4 6l16 0" />
-          <path d="M4 12l16 0" />
-          <path d="M4 12l16 0" />
-          <path d="M4 18l16 0" />
-        </g>
+  <div class="page_wrap">
+    <div class="menu_wrap u-vflex-stretch-center">
+      <div data-theme="dark" class="menu_layout u-vflex-center-center">
+        <a href="#header" class="menu_link w-inline-block">
+          <div class="u-text-menu-link">Home</div>
+          <div class="u-text-menu-link">Home</div>
+        </a>
+        <a href="#details" class="menu_link w-inline-block">
+          <div class="u-text-menu-link">About</div>
+          <div class="u-text-menu-link">About</div>
+        </a>
+        <a href="#creatorled-project" class="menu_link w-inline-block">
+          <div class="u-text-menu-link">Portfolio</div>
+          <div class="u-text-menu-link">Portfolio</div>
+        </a>
+        <a href="#about" class="menu_link w-inline-block">
+          <div class="u-text-menu-link">Contact</div>
+          <div class="u-text-menu-link">Contact</div>
+        </a>
+        <div class="menu_rdm_top u-hflex-center-center">
+          <div class="menu_rdm_text">fredrick</div>
+        </div>
+        <div class="menu_rdm_bottom u-hflex-center-center">
+          <div class="menu_rdm_text">fredrick</div>
+        </div>
+      </div>
+    </div>
+    <div class="menu_button u-vflex-center-center">
+      <div class="menu_button_wrap u-vflex-center-center">
+        <div class="menu_button_line top"></div>
+        <div class="menu_button_line middle"></div>
+        <div class="menu_button_line bottom"></div>
+      </div>
+      <span class="menu_button_cross" aria-hidden="true">&times;</span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 9 9" fill="none" class="menu_button_corner-left">
+        <path d="M0 0H9V9C8.66667 6 6.4 0 0 0Z" fill="currentColor"></path>
       </svg>
-    </button>
-
-    <ul id="nav-menu" role='list' aria-labelledby="btn-nav-toggle" aria-hidden="true">
-      <li style="--i: 1;"><a href="#header" data-target="#header"><span>Home</span></a></li>
-      <li style="--i: 2;" class="accordion-item">
-        <button type="button" class="accordion-trigger"><span>About</span></button>
-        <ul class="accordion-content">
-          <li style="--i: 2.1;"><a href="#details" data-target="#details"><span>Profile</span></a></li>
-          <li style="--i: 2.2;"><a href="#experience" data-target="#experience"><span>Experience</span></a></li>
-          <li style="--i: 2.3;"><a href="#education" data-target="#education"><span>Education</span></a></li>
-        </ul>
-      </li>
-      <li style="--i: 3;" class="accordion-item">
-        <button type="button" class="accordion-trigger"><span>Portfolio</span></button>
-        <ul class="accordion-content">
-          <li style="--i: 3.1;"><a href="#orda-rides" data-target="#orda-rides"><span>ORDA Rides</span></a></li>
-          <li style="--i: 3.2;"><a href="#scalepoint-erp" data-target="#scalepoint-erp"><span>ScalePoint ERP</span></a>
-          </li>
-          <li style="--i: 3.3;"><a href="#pomodoro-play" data-target="#pomodoro-play"><span>Pomodoro Play</span></a>
-          </li>
-          <li style="--i: 3.4;"><a href="#msunit" data-target="#msunit"><span>Go-Shop</span></a></li>
-        </ul>
-      </li>
-      <li style="--i: 4;" class="accordion-item">
-        <button type="button" class="accordion-trigger"><span>Contact</span></button>
-        <ul class="accordion-content">
-          <li style="--i: 4.1;"><a href="https://github.com/freddiequinson" target="_blank" data-target="https://github.com/omariomari2"><span>GitHub</span></a></li>
-          <li style="--i: 4.2;"><a href="https://www.linkedin.com/in/fredrick-agyare-9887a0244" target="_blank"  data-target="#linkedin-contact"><span>LinkedIn</span></a>
-          </li>
-          <li style="--i: 4.3;"><a href="mailto:agyarefredrick22@gmail.com" target="_blank" data-target="#email-contact"><span>Email</span></a></li>
-          <li style="--i: 4.4;"><a href="#phone-contact" data-target="#phone-contact"><span>Phone</span></a></li>
-        </ul>
-      </li>
-      <!-- <li style="--i: 5;"><a href="BrightOmariOwusu_resumeSWE.pdf" target="_blank"
-          rel="noopener noreferrer"><span>Resume</span></a></li> -->
-    </ul>
-  </nav>
+      <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 9 9" fill="none" class="menu_button_corner-right">
+        <path d="M0.00195312 9L0.00195313 0L9.00195 0C6.00195 0.333333 0.00195313 2.6 0.00195312 9Z" fill="currentColor"></path>
+      </svg>
+    </div>
+  </div>
 
   <main class="page-wrapper">
     <header id="header" data-w-id="13175f13-b588-6ca3-c25c-205b77b7efa4" class="home-header-wrapper">
@@ -1682,104 +1607,50 @@
       });
     });
 
-    requestAnimationFrame(raf)
+    requestAnimationFrame(raf);
 
     // Navbar functionality
-    console.clear();
-    const navToggleBtn = document.getElementById("btn-nav-toggle");
-    const navMenu = document.getElementById("nav-menu");
+    (function() {
+      const menuWrap = document.querySelector(".menu_wrap");
+      const menuButton = document.querySelector(".menu_button");
+      const menuLinks = document.querySelectorAll(".menu_link");
 
-    // Accordion functionality
-    function initAccordion() {
-      const accordionTriggers = document.querySelectorAll('.accordion-trigger');
-      console.log('Found accordion triggers:', accordionTriggers.length);
+      console.log('Navbar init - menuWrap:', menuWrap, 'menuButton:', menuButton);
 
-      accordionTriggers.forEach(trigger => {
-        trigger.addEventListener('click', (e) => {
-          console.log('Accordion clicked!');
-          e.preventDefault();
-          e.stopPropagation();
-          const accordionItem = trigger.closest('.accordion-item');
-          const isActive = accordionItem.classList.contains('active');
-          console.log('Is active:', isActive);
-
-          // Close all accordions
-          document.querySelectorAll('.accordion-item').forEach(item => {
-            item.classList.remove('active');
-          });
-
-          // Toggle current accordion
-          if (!isActive) {
-            accordionItem.classList.add('active');
-            console.log('Added active class');
-          }
-        });
-      });
-    }
-
-    // Initialize accordion after DOM is ready
-    initAccordion();
-
-    // Close accordion when submenu items are clicked
-    function initSubmenuClose() {
-      const submenuLinks = document.querySelectorAll('.accordion-content a');
-
-      submenuLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-          // Close the accordion
-          const accordionItem = link.closest('.accordion-item');
-          accordionItem.classList.remove('active');
-
-          // Also close the navbar after a short delay to allow smooth scrolling
-          setTimeout(() => {
-            toggleNav(false);
-          }, 100);
-        });
-      });
-    }
-
-    // Initialize submenu close functionality
-    initSubmenuClose();
-
-    // Toggle nav button
-    navToggleBtn.addEventListener("click", (event) => {
-      event.stopPropagation(); // Prevent immediate closing when clicking the button
-      const isExpanded = navToggleBtn.getAttribute("aria-expanded") === "true";
-      toggleNav(!isExpanded);
-    });
-
-    // Toggle nav panel
-    function toggleNav(expand) {
-      navToggleBtn.setAttribute("aria-expanded", String(expand));
-      navMenu.setAttribute("aria-hidden", String(!expand));
-      navMenu.toggleAttribute("inert", !expand);
-
-      // add/remove event handler on dom to close nav panel
-      expand && document.addEventListener("click", handleOutsideClick);
-      !expand && document.removeEventListener("click", handleOutsideClick);
-    }
-
-    function handleOutsideClick(event) {
-      if (!navMenu.contains(event.target) && !navToggleBtn.contains(event.target)) {
-        toggleNav(false);
+      if (!menuWrap || !menuButton) {
+        console.error('Navbar elements not found!');
+        return;
       }
-    }
 
-    // Handle navbar link clicks
-    const navLinks = document.querySelectorAll('nav > ul > li > a');
-    navLinks.forEach(link => {
-      link.addEventListener('click', (e) => {
-        // If it's an internal link with data-target, use smooth scroll
-        if (link.hasAttribute('data-target')) {
+      const closeMenu = () => {
+        menuWrap.classList.remove("is-open");
+        document.body.classList.remove("no-scroll");
+        console.log('Menu closed');
+      };
+
+      const toggleMenu = () => {
+        const willOpen = !menuWrap.classList.contains("is-open");
+        menuWrap.classList.toggle("is-open", willOpen);
+        document.body.classList.toggle("no-scroll", willOpen);
+        console.log('Menu toggled:', willOpen);
+      };
+
+      menuButton.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        console.log('Menu button clicked!');
+        toggleMenu();
+      });
+
+      menuLinks.forEach((link) => {
+        link.addEventListener("click", (e) => {
+          const href = link.getAttribute("href");
+          if (href && href.startsWith("#")) {
           e.preventDefault();
-          const target = link.getAttribute('data-target');
-          const targetElement = document.querySelector(target);
-
+            const targetElement = document.querySelector(href);
           if (targetElement) {
-            // Close navbar first
-            toggleNav(false);
-
-            // Use existing smooth scroll functionality
+              closeMenu();
+              // Use lenis smooth scroll
             lenis.scrollTo(targetElement.offsetTop, {
               offset: 0,
               immediate: false,
@@ -1788,11 +1659,17 @@
             });
           }
         } else {
-          // For external links (like Resume), just close the navbar
-          toggleNav(false);
+            closeMenu();
         }
       });
     });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          closeMenu();
+        }
+      });
+    })();
   </script>
 </body>
 
