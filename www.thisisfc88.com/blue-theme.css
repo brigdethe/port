@@ -1,0 +1,76 @@
+/* Blue Theme Override */
+:root {
+  /* Primary Colors - Changing from green to blue */
+  --color-primary: #2563eb;       /* Blue-600 */
+  --color-primary-dark: #1d4ed8;  /* Blue-700 */
+  --color-primary-light: #3b82f6; /* Blue-500 */
+  --color-primary-transparent: rgba(37, 99, 235, 0.1); /* Blue-600 with transparency */
+  
+  /* Secondary Colors - Adjusting to complement blue */
+  --color-secondary: #3b82f6;     /* Blue-500 */
+  --color-secondary-dark: #2563eb; /* Blue-600 */
+  --color-secondary-light: #60a5fa; /* Blue-400 */
+  
+  /* Hover states */
+  --color-primary-hover: #1d4ed8; /* Blue-700 */
+  --color-secondary-hover: #2563eb; /* Blue-600 */
+  
+  /* Text and UI elements that were green */
+  --color-accent: #2563eb; /* Blue-600 */
+  --color-accent-dark: #1d4ed8; /* Blue-700 */
+}
+
+/* Update any specific elements that might be using hardcoded green colors */
+::selection,
+::-moz-selection {
+  background-color: var(--color-secondary);
+  color: var(--color-white);
+}
+
+/* Update button styles */
+.btn-primary {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
+}
+
+/* Update link colors */
+a {
+  color: var(--color-primary);
+}
+
+a:hover {
+  color: var(--color-primary-dark);
+}
+
+/* Update form elements */
+input[type="submit"],
+button[type="submit"] {
+  background-color: var(--color-primary);
+}
+
+input[type="submit"]:hover,
+button[type="submit"]:hover {
+  background-color: var(--color-primary-dark);
+}
+
+/* Update any specific component styles */
+.s3-socials__btns .btn-social {
+  color: var(--color-primary-dark);
+}
+
+.s3-socials__btns .btn-social .btn-social__inner svg:first-child path {
+  fill: var(--color-primary);
+}
+
+body #mc_embed_signup .mc-response.is--success {
+  background-color: var(--color-primary);
+}
+
+.side__row-catalogue .btn .btn__back svg path {
+  fill: var(--color-primary-dark);
+}
